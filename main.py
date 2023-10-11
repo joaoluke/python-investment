@@ -46,6 +46,7 @@ def main():
     settings["asset"] = asset
     settings["timeframe"] = timeframe
 
+    get_data_asset()
 
 if __name__ == "__main__":
     main()
