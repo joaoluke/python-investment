@@ -48,7 +48,8 @@ def main():
     settings["asset"] = asset
     settings["timeframe"] = convertTimeFrame(timeframe)
 
-    get_data_asset(asset, settings["timeframe"])
+    data = get_data_asset(asset, settings["timeframe"])
+    print(data)
 
 
 if __name__ == "__main__":
