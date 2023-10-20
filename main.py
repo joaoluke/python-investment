@@ -1,6 +1,8 @@
 from connect_to_mt5 import connect_to_mt5
 from languages.en import get_financial_information_en, get_user_input_en
 from languages.pt import get_financial_information_ptbr, get_user_input_ptbr
+from get_data_asset import get_data_asset
+from utils.timeframe import convertTimeFrame
 
 settings = {}
 
@@ -44,11 +46,10 @@ def main():
 
     asset, timeframe = get_financial_information(language)
     settings["asset"] = asset
-    settings["timeframe"] = timeframe
+    settings["timeframe"] = convertTimeFrame(timeframe)
 
-    get_data_asset()
+    get_data_asset(asset, settings["timeframe"])
+
 
 if __name__ == "__main__":
     main()
-
-    

@@ -24,4 +24,4 @@ def weighted_probability(s, alpha=0.8):
     percentage = prob_weighted * 100
 
 
-    return f"{percentage:.2f}%"
+    return prob_weighted

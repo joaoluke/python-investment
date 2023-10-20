@@ -15,3 +15,4 @@ def generate_graphs(dataframe):
     ])
 
     app.run_server(debug=True)
+    
