@@ -1,4 +1,4 @@
-# Nome do projeto
+# Python para investimento (renda variável)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/iuricode/README-template?style=for-the-badge)
@@ -6,31 +6,28 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/iuricode/README-template?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge)
 
-<img src="imagem.png" alt="Exemplo imagem">
+<img src="assets/inveting.jpg" alt="Exemplo imagem">
 
-> Linha adicional de texto informativo sobre o que o projeto faz. Sua introdução deve ter cerca de 2 ou 3 linhas. Não exagere, as pessoas não vão ler.
+> Uma coleção de estratégias de investimento para você investir de forma automatizada, basta rodar o script e conectar na sua conta do MetaTrader5, escolhendo o ativo e a estratégia você tem um cálculo da probabilidade de obter lucro baseado nos eventos passados.
 
 ### Ajustes e melhorias
 
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
+O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas as seguintes estratégias:
 
-- [x] Tarefa 1
-- [x] Tarefa 2
-- [x] Tarefa 3
-- [ ] Tarefa 4
-- [ ] Tarefa 5
+- [x] Cruzamento de médias móveis
+- []  RSI
+- []  Cruzamento de tendencia
 
 ## 💻 Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
-* Você instalou a versão mais recente de `<linguagem / dependência / requeridos>`
-* Você tem uma máquina `<Windows / Linux / Mac>`. Indique qual sistema operacional é compatível / não compatível.
-* Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
+* Você instalou a versão mais recente de `Python` de preferencia do `3.10+`
+* Você tem uma máquina `<Windows / Linux / Mac>`.
 
-## 🚀 Instalando <nome_do_projeto>
+## 🚀 Rodando <script_de_investimento>
 
-Para instalar o <nome_do_projeto>, siga estas etapas:
+Para instalar o <script_de_investimento>, siga estas etapas:
 
 Linux e macOS:
 ```
@@ -42,24 +39,47 @@ Windows:
 <comando_de_instalação>
 ```
 
-## ☕ Usando <nome_do_projeto>
+## ☕ Usando <script_de_investimento>
 
-Para usar <nome_do_projeto>, siga estas etapas:
+Para usar <script_de_investimento>, siga estas etapas:
+
+1. Escolha a sua linguagem
 
 ```
-<exemplo_de_uso>
+        ----------------------------------------------------------------
+        Please choose your language (1 for English or 2 for Portuguese): 
+        Por favor escolha seu idioma (1 para ingles ou 2 pra portugues):
+        ----------------------------------------------------------------
 ```
+2. Faça seu login com sua conta do MetaTrader5
 
+```
+        Bem-vindo ao seu algoritmo de trading!
+        Enter your MetaTrader login: login_example
+        Enter your MetaTrader password: password_example
+        Enter the MetaTrader server: server_example
+```
+3. Após isso receberá a seguinte mensagem
+
+```
+        -------------------------------------------------------
+        ✹ Sucesso ao se conectar, aqui estão algumas informações:
+        -------------------------------------------------------
+        TerminalInfo(.........)
+        -------------------------------------------------------
+        Versão do MetaTrader:
+        (.......)
+```
 Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Fornece uma referência de opções para pontos de bônus!
 
-## 📫 Contribuindo para <nome_do_projeto>
+## 📫 Contribuindo para <script_de_investimento>
 
-Para contribuir com <nome_do_projeto>, siga estas etapas:
+Para contribuir com <script_de_investimento>, siga estas etapas:
 
 1. Bifurque este repositório.
-2. Crie um branch: `git checkout -b <nome_branch>`.
+2. Crie um branch: `git checkout -b <main>`.
 3. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
-4. Envie para o branch original: `git push origin <nome_do_projeto> / <local>`
+4. Envie para o branch original: `git push origin <script_de_investimento> / <local>`
 5. Crie a solicitação de pull.
 
 Como alternativa, consulte a documentação do GitHub em [como criar uma solicitação pull](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
