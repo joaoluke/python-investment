@@ -30,3 +30,6 @@ def get_financial_information_en():
     ).execute()
 
     return asset, timeframe
+
+def get_periods_en():
+    return

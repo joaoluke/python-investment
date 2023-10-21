@@ -1,6 +1,7 @@
+from connect_to_mt5 import mt5
 from InquirerPy import inquirer
 from InquirerPy.base.control import Choice
-from connect_to_mt5 import mt5
+from InquirerPy.validator import EmptyInputValidator
 
 
 def get_user_input_ptbr():
@@ -31,3 +32,18 @@ def get_financial_information_ptbr():
     ).execute()
 
     return asset, timeframe
+
+def get_periods_ptbr():
+    fsma_period = inquirer.number(
+        message="Digite o valor da média de curto período:",
+        min_allowed=1,
+        validate=EmptyInputValidator(),
+    ).execute()
+
+    ssma_period = inquirer.number(
+        message="Digite o valor da média de longo período:",
+        min_allowed=int(fsma_period),
+        validate=EmptyInputValidator(),
+    ).execute()
+
+    return int(ssma_period), int(fsma_period)

@@ -3,9 +3,7 @@ import pandas as pd
 import numpy as np
 
 
-def get_finantial_information(symbol, timeframe, start_pos, num_bars, ssma_period, fsma_period):
-    bars = mt5.copy_rates_from_pos(symbol, timeframe, start_pos, num_bars)
-    df = pd.DataFrame(bars)[['time', 'open', 'close', 'low', 'high']]
+def get_finantial_information(df, ssma_period, fsma_period):
     df['time'] = pd.to_datetime(df['time'], unit='s')
     df['slow_sma'] = df['close'].rolling(ssma_period).mean()
     df['fast_sma'] = df['close'].rolling(fsma_period).mean()
@@ -13,9 +11,8 @@ def get_finantial_information(symbol, timeframe, start_pos, num_bars, ssma_perio
     return df.dropna(inplace=True)
 
 
-def finding_crossovers(symbol, timeframe, start_pos, num_bars, ssma_period, fsma_period):
-    df = get_finantial_information(
-        symbol, timeframe, start_pos, num_bars, ssma_period, fsma_period)
+def finding_crossovers(df, ssma_period, fsma_period):
+    df = get_finantial_information(df, ssma_period, fsma_period)
 
     df['prev_fast_sma'] = df['fast_sma'].shift(1)
 

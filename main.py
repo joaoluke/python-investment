@@ -1,9 +1,11 @@
 from connect_to_mt5 import connect_to_mt5, mt5
-from languages.en import get_financial_information_en, get_user_input_en
-from languages.pt import get_financial_information_ptbr, get_user_input_ptbr
+from languages.en import get_financial_information_en, get_user_input_en, get_periods_en
+from languages.pt import get_financial_information_ptbr, get_user_input_ptbr, get_periods_ptbr
 from get_data_asset import get_data_asset
+from strategy.crossing_averages import finding_crossovers
 from utils.timeframe import convertTimeFrame
 from InquirerPy import inquirer
+from InquirerPy.validator import EmptyInputValidator
 from InquirerPy.base.control import Choice
 from InquirerPy.separator import Separator
 from InquirerPy import prompt
@@ -26,6 +28,13 @@ def get_financial_information(language):
         return get_financial_information_en()
     elif language == 'Português':
         return get_financial_information_ptbr()
+
+
+def get_periods(language):
+    if language == 'English':
+        return get_periods_en()
+    elif language == 'Português':
+        return get_periods_ptbr()
 
 
 def main():
@@ -57,7 +66,11 @@ def main():
     settings["asset"] = asset
     settings["timeframe"] = convertTimeFrame(timeframe)
 
-    data = get_data_asset(asset, settings["timeframe"])
+    data = get_data_asset(asset, timeframe)
+
+    ssma_period, fsma_period = get_periods(language)
+    finding_crossovers(data, ssma_period, fsma_period)
+
     print(data)
 
 
