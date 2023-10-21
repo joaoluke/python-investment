@@ -22,7 +22,7 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
-* Você instalou a versão mais recente de `Python` de preferencia do `3.10+`
+* Você instalou a versão mais recente de `Python` de preferência do `3.10+`
 * Você tem uma máquina `<Windows / Linux / Mac>`.
 
 ## 🚀 Rodando <script_de_investimento>
