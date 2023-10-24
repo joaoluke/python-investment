@@ -1,14 +1,12 @@
-import MetaTrader5 as mt5
-import pandas as pd
 import numpy as np
 
 
 def get_finantial_information(df, ssma_period, fsma_period):
-    df['time'] = pd.to_datetime(df['time'], unit='s')
     df['slow_sma'] = df['close'].rolling(ssma_period).mean()
     df['fast_sma'] = df['close'].rolling(fsma_period).mean()
+    df.dropna(inplace=True)
 
-    return df.dropna(inplace=True)
+    return df
 
 
 def finding_crossovers(df, ssma_period, fsma_period):
@@ -27,5 +25,5 @@ def finding_crossovers(df, ssma_period, fsma_period):
     df['crossover'] = np.vectorize(find_crossovers)(
         df['slow_sma'], df['fast_sma'], df['prev_fast_sma'])
 
-    signal = df[df['crossover'] == 'bull'].copy()
-    return signal
+    signals = df[df['crossover'] == 'bull'].copy()
+    return signals
