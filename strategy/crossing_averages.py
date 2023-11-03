@@ -11,7 +11,6 @@ def get_finantial_information(df, ssma_period, fsma_period):
 
 def finding_crossovers(df, ssma_period, fsma_period):
     df = get_finantial_information(df, ssma_period, fsma_period)
-
     df['prev_fast_sma'] = df['fast_sma'].shift(1)
 
     def find_crossovers(slow_sma, fast_sma, prev_fast_sma):
@@ -24,6 +23,6 @@ def finding_crossovers(df, ssma_period, fsma_period):
 
     df['crossover'] = np.vectorize(find_crossovers)(
         df['slow_sma'], df['fast_sma'], df['prev_fast_sma'])
+    
 
-    signals = df[df['crossover'] == 'bull'].copy()
-    return signals
+    return df

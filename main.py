@@ -78,12 +78,12 @@ def main():
     balance = input('Quanto tem na sua carteira')
     contract = input('Quantos contratos voce vai simular')
 
-    sma_crossover_strategy = Strategy(df_cross, balance, contract)
+    sma_crossover_strategy = Strategy(df_cross, 5000, 100)
     result = sma_crossover_strategy.run()
     results = [1 if x > 0 else 0 for x in result['profit']][::-1]
     probability = weighted_probability(results) * 100
 
-    print(f'A probabilidade de acerto é de: {probability}%')
+    print(f'A probabilidade de acerto é de: {round(probability, 2)}%')
 
 
 if __name__ == "__main__":
