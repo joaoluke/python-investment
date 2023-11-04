@@ -53,5 +53,5 @@ def get_account_information_en():
     return int(balance), int(contract)
 
 
-def show_result_ptbr(probability):
+def show_result_en(probability):
     print(f'The probability of success is: {round(probability, 2)}%')
