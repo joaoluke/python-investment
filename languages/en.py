@@ -1,6 +1,7 @@
+from connect_to_mt5 import mt5
 from InquirerPy import inquirer
 from InquirerPy.base.control import Choice
-from connect_to_mt5 import mt5
+from InquirerPy.validator import EmptyInputValidator
 
 
 def get_user_input_en():
@@ -31,5 +32,26 @@ def get_financial_information_en():
 
     return asset, timeframe
 
+
 def get_periods_en():
     return
+
+
+def get_account_information_en():
+    print('Now lets simulate the strategy in the past tense')
+    balance = inquirer.number(
+        message="What is your margin?",
+        min_allowed=1,
+        validate=EmptyInputValidator(),
+    ).execute()
+    contract = inquirer.number(
+        message="How many contracts do you want to simulate?",
+        min_allowed=1,
+        validate=EmptyInputValidator(),
+    ).execute()
+
+    return int(balance), int(contract)
+
+
+def show_result_ptbr(probability):
+    print(f'The probability of success is: {round(probability, 2)}%')

@@ -1,7 +1,7 @@
 from connect_to_mt5 import connect_to_mt5
 
-from languages.en import get_financial_information_en, get_user_input_en, get_periods_en
-from languages.pt import get_financial_information_ptbr, get_user_input_ptbr, get_periods_ptbr
+from languages.en import get_financial_information_en, get_user_input_en, get_periods_en, get_account_information_en, show_result_en
+from languages.pt import get_financial_information_ptbr, get_user_input_ptbr, get_periods_ptbr, get_account_information_ptbr, show_result_ptbr
 from get_data_asset import get_data_asset
 from probability_calculation import weighted_probability
 from strategy.crossing_averages import finding_crossovers
@@ -36,6 +36,19 @@ def get_periods(language):
         return get_periods_ptbr()
 
 
+def get_account_information(language):
+    if language == 'English':
+        return get_account_information_en()
+    elif language == 'Português':
+        return get_account_information_ptbr()
+
+
+def show_result(language, probability):
+    if language == 'English':
+        return show_result_en(probability)
+    elif language == 'Português':
+        return show_result_ptbr(probability)
+
 
 def main():
     print('-------------------------------------------------')
@@ -52,12 +65,9 @@ def main():
         default=None,
     ).execute()
 
-    #login, password, server = get_user_input(language)
-    #if login is None:
-    #    return
-    login = 5916003
-    password = 'IEQHeeen'
-    server = 'ActivTradesCorp-Server'
+    login, password, server = get_user_input(language)
+    if login is None:
+        return
 
     settings["login"] = login
     settings["password"] = password
@@ -74,16 +84,14 @@ def main():
     ssma_period, fsma_period = get_periods(language)
     df_cross = finding_crossovers(data, ssma_period, fsma_period)
 
-    print('Agora vamos simular a estratégia no tempo passado')
-    balance = input('Quanto tem na sua carteira')
-    contract = input('Quantos contratos voce vai simular')
+    balance, contract = get_account_information(language)
 
-    sma_crossover_strategy = Strategy(df_cross, 5000, 100)
+    sma_crossover_strategy = Strategy(df_cross, balance, contract)
     result = sma_crossover_strategy.run()
     results = [1 if x > 0 else 0 for x in result['profit']][::-1]
-    probability = weighted_probability(results) * 100
+    probability = weighted_probability(results)
 
-    print(f'A probabilidade de acerto é de: {round(probability, 2)}%')
+    show_result(language, probability)
 
 
 if __name__ == "__main__":

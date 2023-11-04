@@ -33,6 +33,7 @@ def get_financial_information_ptbr():
 
     return asset, timeframe
 
+
 def get_periods_ptbr():
     fsma_period = inquirer.number(
         message="Digite o valor da média de curto período:",
@@ -47,3 +48,23 @@ def get_periods_ptbr():
     ).execute()
 
     return int(ssma_period), int(fsma_period)
+
+
+def get_account_information_ptbr():
+    print('Agora vamos simular a estratégia no tempo passado')
+    balance = inquirer.number(
+        message="Qual é sua margem?",
+        min_allowed=1,
+        validate=EmptyInputValidator(),
+    ).execute()
+    contract = inquirer.number(
+        message="Quantos contratos deseja simular?",
+        min_allowed=1,
+        validate=EmptyInputValidator(),
+    ).execute()
+
+    return int(balance), int(contract)
+
+
+def show_result_ptbr(probability):
+    print(f'A probabilidade de acerto é de: {round(probability, 2)}%')
