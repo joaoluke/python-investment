@@ -4,16 +4,19 @@ import dash_html_components as html
 import plotly.express as px
 
 
-df = px.data.stocks()
-fig = px.line(df, x='date', y="GOOG")
-fig1 = px.line(df, x='date', y="GOOG")
 
-app = dash.Dash(__name__)
 
-app.layout = html.Div([
-    dcc.Graph(figure=fig),
-    dcc.Graph(figure=fig1)
-])
+def visualize_dashboard(df):
+    signal = df[df['crossover'] == 'bull'].copy()
+    fig = px.line(df, x='time', y=['close', 'fast_sma', 'slow_sma'])
 
-if __name__ == '__main__':
+    for i, row in signal.iterrows():
+        fig.add_vline(x=row.time)
+
+    app = dash.Dash(__name__)
+
+    app.layout = html.Div([
+        dcc.Graph(figure=fig)
+    ])
+
     app.run_server(debug=True)

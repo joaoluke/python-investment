@@ -8,6 +8,7 @@ from strategy.crossing_averages import finding_crossovers
 from utils.timeframe import convertTimeFrame
 from InquirerPy import inquirer
 from backtest.crossover_strategy import Strategy
+from analyze_data import visualize_dashboard
 
 settings = {}
 
@@ -83,11 +84,12 @@ def main():
 
     ssma_period, fsma_period = get_periods(language)
     df_cross = finding_crossovers(data, ssma_period, fsma_period)
-
+    visualize_dashboard(df_cross)
     balance, contract = get_account_information(language)
 
     sma_crossover_strategy = Strategy(df_cross, balance, contract)
     result = sma_crossover_strategy.run()
+    print('result', result)
     results = [1 if x > 0 else 0 for x in result['profit']][::-1]
     probability = weighted_probability(results)
 
